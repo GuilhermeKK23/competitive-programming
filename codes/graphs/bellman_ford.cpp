@@ -28,6 +28,5 @@ pair<bool, vector<int>> bellman_ford(int n, int ini, vector<edge> &edges){
         }
     }
 
-    if(relaxou) return {1, dist};
-    else return {0, dist};
+    return {relaxou, dist};
 }
