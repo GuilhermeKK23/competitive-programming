@@ -12,7 +12,7 @@ void dfs(int cur, int &t, vector<vector<int>> &grafo, vector<bool> &marc, vector
         if(low[viz]<low[cur]) low[cur] = low[viz], lead[cur] = false;
     }
     if(lead[cur]){
-        while(low[s.top()]>=low[cur]){
+        while(s.size() && low[s.top()]>=low[cur]){
             int x = s.top(); s.pop();
             comp[x] = cur;
             low[x] = INF;
@@ -31,9 +31,6 @@ vector<int> tarjan(int n, vector<vector<int>> &grafo){
     vector<bool> marc(n+1), lead(n+1);
     vector<int> low(n+1), comp(n+1);
     stack<int> s;
-    int guard = 0;
-    low[guard] = 0;
-    s.push(guard);
     for(int i=1; i<=n; ++i) if(!marc[i]) dfs(i, t, grafo, marc, lead, low, comp, s);
     return comp;
 }
